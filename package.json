@@ -1,0 +1,16 @@
+{
+  "name": "task-manager-react-2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "i-all": "npm install && npm install --prefix frontend && npm install --prefix backend",
+    "start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix backend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
