@@ -33,7 +33,7 @@ const FormUser = ({ setActive, userName, userEmail, hasRoles, roles, userId }) =
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const errors = validateManyFields("userEdit", formData);
+    const errors = validateManyFields("user", formData);
     setFormErrors({})
     if (errors.length > 0) {
       setFormErrors(errors.reduce((total, ob) => ({ ...total, [ob.field]: ob.err }), {}))

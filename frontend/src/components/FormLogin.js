@@ -20,7 +20,7 @@ const FormLogin = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const errors = validateManyFields("login", formData);
+    const errors = validateManyFields("user", formData);
     setFormErrors({})
     if (errors.length > 0) {
       setFormErrors(errors.reduce((total, ob) => ({ ...total, [ob.field]: ob.err }), {}))

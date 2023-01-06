@@ -32,7 +32,7 @@ const FormEdit = ({ setActive, title, value, completeProgress, expiredDate, targ
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const errors = validateManyFields("taskEdit", formData);
+    const errors = validateManyFields("task", formData);
     setFormErrors({})
     if (errors.length > 0) {
       setFormErrors(errors.reduce((total, ob) => ({ ...total, [ob.field]: ob.err }), {}))
@@ -135,6 +135,7 @@ const FormEdit = ({ setActive, title, value, completeProgress, expiredDate, targ
           min={changeFormatDate()}
           onChange={handleChange}
         />
+        {fieldError(formErrors, "expiredDate")}
       </div>
       <button
         className="block ml-auto py-[3px] px-[10px] rounded-[10px] border border-main-dark bg-neutral-100"

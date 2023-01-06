@@ -8,7 +8,7 @@ const isValidEmail = (email) => {
 
 export const validate = (group, name, value) => {
 
-  if (group === "registration") {
+  if (group === "user") {
     switch (name) {
       case "userName": {
         if (!value) return "Поле должно быть заполнено"
@@ -27,22 +27,7 @@ export const validate = (group, name, value) => {
       default: return null
     }
   }
-
-  else if (group === "login") {
-    switch (name) {
-      case "userEmail": {
-        if (!value) return "Поле должно быть заполнено"
-        if (!isValidEmail(value)) return "Пожалуйста введите корректный Email"
-        return null
-      }
-      case "password": {
-        if (!value) return "Поле должно быть заполнено"
-        return null
-      }
-      default: return null
-    }
-  }
-  else if (group === "taskAdd") {
+  else if (group === "task") {
     switch (name) {
       case "title": {
         if (!value) return "Поле должно быть заполнено"
@@ -59,25 +44,6 @@ export const validate = (group, name, value) => {
       default: return null
     }
   }
-
-  else if (group === "userEdit") {
-    switch (name) {
-      case "userName": {
-        if (!value) return "Поле должно быть заполнено"
-        return null
-      }
-      case "userEmail": {
-        if (!value) return "Поле должно быть заполнено"
-        return null
-      }
-      case "roles": {
-        if (!value) return "Поле должно быть заполнено"
-        return null
-      }
-      default: return null
-    }
-  }
-
   else {
     return null
   }

@@ -27,7 +27,7 @@ const FormAdd = ({ setActive }) => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const errors = validateManyFields("taskAdd", formData);
+    const errors = validateManyFields("task", formData);
     setFormErrors({})
     if (errors.length > 0) {
       setFormErrors(errors.reduce((total, ob) => ({ ...total, [ob.field]: ob.err }), {}))
