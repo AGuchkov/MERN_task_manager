@@ -5,19 +5,28 @@ import Header from "../components/Header"
 import ProgressList from "../components/ProgressList"
 import StageList from "../components/StageList"
 import AdminBar from "../components/AdminBar"
+import { useEffect, useState } from "react"
 
 function MainPage() {
+  const [adminId, setAdminId] = useState('')
   const { isLoggedIn, userData } = useSelector((state) => state.user)
   const stages = api.useGetAllStageQuery()
   const roles = api.useGetAllRolesQuery()
   const users = api.useGetAllUserQuery()
   const tasks = api.useGetAllTaskQuery()
 
+  useEffect(() => {
+    if (roles.data) {
+      const { _id } = roles.data.find(el => el.value === 'admin')
+      setAdminId(_id)
+    }
+  }, [roles])
+
   const hasRoles = userData.roles
 
   return (
     <>
-      <Header />
+      <Header adminId={adminId}/>
       <div className={`flex flex-col grow ${isLoggedIn ? "xl:flex-row" : null}`}>
         {!isLoggedIn ?
           <div className="bg-inherit p-8 text-center">
@@ -36,8 +45,8 @@ function MainPage() {
             <p className="mt-[20px] text-xl font-semibold">для начала работы</p>
           </div>
           : null}
-        {isLoggedIn && hasRoles.includes("admin") ? <AdminBar users={users.data} roles={roles.data} /> : null}
-        {isLoggedIn && !hasRoles.includes("admin") ?
+        {isLoggedIn && hasRoles.includes(adminId) ? <AdminBar users={users.data} roles={roles.data} /> : null}
+        {isLoggedIn && !hasRoles.includes(adminId) ?
           <>
             <StageList stages={stages.data} tasks={tasks.data} users={users.data} />
             <ProgressList tasks={tasks.data} />

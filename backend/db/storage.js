@@ -23,10 +23,11 @@ const initializeStorage = async () => {
       { value: 'manager' }
     ]).catch(console.error)
   }
-  const admin = await User.findOne({ roles: 'admin' })
+  const adminRole = await Role.findOne({ value: 'admin' })
+  const admin = await User.findOne({ roles: [adminRole._id] })
   if (!admin) {
     User.create([
-      { userName: process.env.ADMIN_NAME, userEmail: process.env.ADMIN_EMAIL, userPassword: bcrypt.hashSync(process.env.ADMIN_PASS, 7), roles: 'admin' }
+      { userName: process.env.ADMIN_NAME, userEmail: process.env.ADMIN_EMAIL, userPassword: bcrypt.hashSync(process.env.ADMIN_PASS, 7), roles: [adminRole._id] }
     ]).catch(console.error)
   }
 }

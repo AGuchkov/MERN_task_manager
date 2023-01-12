@@ -76,7 +76,10 @@ const User = ({ id, name, email, hasRoles, roles }) => {
             <div className="mb-[5px] text-[20px]">{email}</div>
             <div className="flex text-[18px]">
               <h2 className="font-bold">Роли:</h2>
-              {hasRoles && hasRoles.map(role => <div key={role} className="mx-[3px]">{role}</div>)}
+              {hasRoles && hasRoles.map(hasRole => {
+                const { value } = roles.find(el => el._id === hasRole)
+                return <div key={hasRole} className="mx-[5px]">{value}</div>
+              })}
             </div>
           </div>
           <div className="min-w-[22px] min-h-[22px] bg-main-blue rounded-full"></div>

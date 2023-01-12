@@ -18,7 +18,7 @@ class authController {
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const userRole = await Role.findOne({ value: 'user' })
-      const user = new User({ userName, userEmail, userPassword: hashPassword, roles: [userRole.value] })
+      const user = new User({ userName, userEmail, userPassword: hashPassword, roles: [userRole._id] })
       await user.save()
       const token = generateAccessToken(user._id, user.roles)
 

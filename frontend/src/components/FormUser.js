@@ -92,7 +92,7 @@ const FormUser = ({ setActive, userName, userEmail, hasRoles, roles, userId }) =
           {roles && roles.map(role => (
             <option
               key={role._id}
-              value={role.value}
+              value={role._id}
               className="px-[10px] py-[5px] mr-[5px] rounded-[10px] inline-block"
             >
               {role.value}
