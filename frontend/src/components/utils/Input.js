@@ -1,4 +1,4 @@
-const Input = ({ id, name, type, defaultValue, value, maxlength, min, max, className = "", disabled = false, onChange }) => {
+const Input = ({ id, name, type, defaultValue, value, maxlength, min, max, className = "", disabled = false, checked = false, onChange }) => {
   return (
     <input
       id={id}
@@ -10,6 +10,7 @@ const Input = ({ id, name, type, defaultValue, value, maxlength, min, max, class
       max={max}
       required
       disabled={disabled}
+      checked={checked}
       maxLength={maxlength}
       className={`block w-full p-[10px] rounded-[10px] border border-main-dark ${disabled ? "bg-stone-100" : ""} text-[16px] leading-[1.15] focus:transition ${className}`}
       onChange={onChange}

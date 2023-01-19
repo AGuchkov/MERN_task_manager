@@ -1,6 +1,21 @@
-export const sorting = (arr, prop, reverse = false) => {
+export const sorting = (arr, props) => {
   let temp = [...arr]
-  return temp.sort((a, b) => (!reverse ? a[prop].toLowerCase() > b[prop].toLowerCase() : a[prop].toLowerCase() < b[prop].toLowerCase()) ? 1 : -1)
+  return temp.sort(compare(props))
+}
+
+function compare(props) {
+  return function (a, b) {
+    for (let i = 0; i < props.length; i++) {
+      let prop = props[i]
+      let field = prop.field
+      let reverse = prop.reverse
+      if (a[field] < b[field])
+        return reverse ? 1 : -1
+      if (a[field] > b[field])
+        return reverse ? -1 : 1
+    }
+    return 0
+  }
 }
 
 export const changeFormatDate = (date) => {

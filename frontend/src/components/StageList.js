@@ -5,14 +5,14 @@ import { sorting } from "../common_fun"
 
 const StageList = ({ stages, tasks, users }) => {
   const [reverse, setReverse] = useState(false)
-  const [selected, setSelected] = useState({ name: "по имени", value: "title" })
+  const [fields, setFields] = useState([{field: 'title', reverse: false}])
   const [sortedTaskArr, setSortedTaskArr] = useState([])
 
   useEffect(() => {
     if (tasks) {
-      setSortedTaskArr(sorting(tasks, selected.value, reverse))
+      setSortedTaskArr(sorting(tasks, fields))
     }
-  }, [tasks, selected, reverse])
+  }, [tasks, fields])
 
   return (
     <ul className="basis-9/12 flex flex-wrap grow mx-[-9px] pr-[9px]">
@@ -23,8 +23,8 @@ const StageList = ({ stages, tasks, users }) => {
           <div className="flex items-center mb-[15px]">
             <h2 className="text-[20px] mr-auto font-bold capitalize">{stage.name}</h2>
             <Dropdown
-              selected={selected}
-              setSelected={setSelected}
+              fields={fields}
+              setFields={setFields}
               reverse={reverse}
               setReverse={setReverse}
             />
@@ -34,7 +34,6 @@ const StageList = ({ stages, tasks, users }) => {
             stages={stages}
             tasks={sortedTaskArr}
             users={users}
-            selected={selected}
           />
         </li>
       ))}
