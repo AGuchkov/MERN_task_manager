@@ -20,13 +20,17 @@ function MainPage() {
       const { _id } = roles.data.find(el => el.value === 'admin')
       setAdminId(_id)
     }
-  }, [roles])
+    stages.refetch()
+    roles.refetch()
+    users.refetch()
+    tasks.refetch()
+  }, [isLoggedIn]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const hasRoles = userData.roles
 
   return (
     <>
-      <Header adminId={adminId}/>
+      <Header adminId={adminId} />
       <div className={`flex flex-col grow ${isLoggedIn ? "xl:flex-row" : null}`}>
         {!isLoggedIn ?
           <div className="bg-inherit p-8 text-center">

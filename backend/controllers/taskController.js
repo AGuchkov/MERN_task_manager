@@ -5,7 +5,7 @@ const User = require('../models/User')
 class taskController {
   async getAllTasks(req, res) {
     try {
-      const tasks = await Task.find({})
+      const tasks = await Task.find({user: req.user.decodedData.id})
       if (!tasks.length) {
         return res.status(404).json({ message: `Нет активных задач` })
       }
